@@ -13,7 +13,7 @@ pipeline {
         stage('Create job.log') {
             steps {
                 script { 
-                  sh 'echo "`date '+%Y_%m_%d__%H_%M_%S' - PRjob completed" >> job.log'
+                  sh 'echo "`date +%Y-%m-%d-%H-%M-%S' - PRjob completed" >> job.log'
                 }
             }
         }
