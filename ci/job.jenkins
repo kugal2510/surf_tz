@@ -37,7 +37,7 @@ pipeline {
             emailext (
                 subject: "Build Notification: ${currentBuild.result}",
                 body: "https://github.com/kugal2510/surf_tz.git",
-                to: "kugal1996@gmail.com",
+                to: "gurov@surf.dev",
                 attachLog: true
             )
        }
