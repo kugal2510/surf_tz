@@ -31,6 +31,7 @@ pipeline {
                 }
             }
         }
+     }
         post {
         always {
             emailext (
@@ -39,9 +40,9 @@ pipeline {
                 to: "kugal1996@gmail.com",
                 attachLog: true
             )
-        }
-     }
-  }
-}
+       }
+    }
+ }
+
 
 
