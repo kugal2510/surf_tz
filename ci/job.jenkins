@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                script {
+                    git branch: 'main', credentialsId: 'surf', url: 'https://github.com/kugal2510/surf_project.git'
+                }
+            }
+        }
+
+        stage('Create job.log') {
+            steps {
+                script {
+                  DATE_TAG = java.time.LocalDate.now()
+                  DATETIME_TAG = java.time.LocalDateTime.now()
+                  sh 'echo "${DATETIME_TAG} - PRjob completed" >> job.log'
+                }
+            }
+        }
+
+        stage('Commit and Push Changes') {
+            steps {
+                script {
+                    withCredentials([gitUsernamePassword(credentialsId: 'surf', gitToolName: 'git-tool')]) { 
+                    sh 'git config user.email "kugal1996@gmail.com"'
+                    sh 'git config user.name "kugal2510"'
+                    sh 'git add job.log'
+                    sh 'git commit -m "Add PRjob execution record"'
+                    sh 'git push origin main'
+                   }
+                }
+            }
+        }
+    }
+}
