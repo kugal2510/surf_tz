@@ -12,10 +12,8 @@ pipeline {
 
         stage('Create job.log') {
             steps {
-                script {
-                  DATE_TAG = java.time.LocalDate.now()
-                  DATETIME_TAG = java.time.LocalDateTime.now()
-                  sh 'echo "${DATETIME_TAG} - PRjob completed" >> job.log'
+                script { 
+                  sh 'echo "${`date +%Y-%m-%d` - PRjob completed" >> job.log'
                 }
             }
         }
